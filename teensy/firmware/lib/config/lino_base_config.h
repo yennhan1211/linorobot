@@ -14,8 +14,8 @@
 // #define USE_ESC
 
 //uncomment the IMU you're using
-#define USE_GY85_IMU
-// #define USE_MPU6050_IMU
+// #define USE_GY85_IMU
+#define USE_MPU6050_IMU
 // #define USE_MPU9150_IMU
 // #define USE_MPU9250_IMU
 
@@ -52,19 +52,19 @@
 ROBOT ORIENTATION
          FRONT
     MOTOR1  MOTOR2  (2WD/ACKERMANN)
-    MOTOR3  MOTOR4  (4WD/MECANUM)  
+    MOTOR3  MOTOR4  (4WD/MECANUM)
          BACK
 */
 
 /// ENCODER PINS
 #define MOTOR1_ENCODER_A 15
-#define MOTOR1_ENCODER_B 14 
+#define MOTOR1_ENCODER_B 14
 
 #define MOTOR2_ENCODER_A 11
-#define MOTOR2_ENCODER_B 12 
+#define MOTOR2_ENCODER_B 12
 
 #define MOTOR3_ENCODER_A 17
-#define MOTOR3_ENCODER_B 16 
+#define MOTOR3_ENCODER_B 16
 
 #define MOTOR4_ENCODER_A 9
 #define MOTOR4_ENCODER_B 10
@@ -91,10 +91,10 @@ ROBOT ORIENTATION
 
   #define PWM_MAX pow(2, PWM_BITS) - 1
   #define PWM_MIN -PWM_MAX
-#endif 
+#endif
 
 #ifdef USE_BTS7960_DRIVER
-  #define MOTOR_DRIVER BTS7960  
+  #define MOTOR_DRIVER BTS7960
 
   #define MOTOR1_PWM 1 //DON'T TOUCH THIS! This is just a placeholder
   #define MOTOR1_IN_A 21
@@ -117,7 +117,7 @@ ROBOT ORIENTATION
 #endif
 
 #ifdef USE_ESC
-  #define MOTOR_DRIVER ESC  
+  #define MOTOR_DRIVER ESC
 
   #define MOTOR1_PWM 1 //DON'T TOUCH THIS! This is just a placeholder
   #define MOTOR1_IN_A 21
