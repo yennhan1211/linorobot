@@ -1,4 +1,6 @@
 #include "lino_base.h"
+#include "std_msgs/String.h"
+#include <ros/ros.h>
 
 LinoBase::LinoBase():
     linear_velocity_x_(0),
@@ -23,17 +25,27 @@ void LinoBase::velCallback(const lino_msgs::Velocities& vel)
     angular_velocity_z_ = vel.angular_z;
 
     vel_dt_ = (current_time - last_vel_time_).toSec();
+
+    std_msgs::String msg;
+    std::stringstream ss;
+
     last_vel_time_ = current_time;
 
     double delta_heading = angular_velocity_z_ * vel_dt_; //radians
     double delta_x = (linear_velocity_x_ * cos(heading_) - linear_velocity_y_ * sin(heading_)) * vel_dt_; //m
     double delta_y = (linear_velocity_x_ * sin(heading_) + linear_velocity_y_ * cos(heading_)) * vel_dt_; //m
+// ss << "hello world " << vel_dt_ << " " << linear_velocity_x_ << " " << linear_velocity_y_ << " " << heading_ ;
+  //  msg.data = ss.str();
 
+    //ROS_INFO("%s", msg.data.c_str());
     //calculate current position of the robot
     x_pos_ += delta_x;
     y_pos_ += delta_y;
     heading_ += delta_heading;
 
+ss << "hello world " << vel_dt_ << " " << linear_velocity_x_ << " " << linear_velocity_y_ << " " << " " << "\n" << heading_  << " " << x_pos_ << " " << y_pos_;
+    msg.data = ss.str();
+    ROS_INFO("%s", msg.data.c_str());
     //calculate robot's heading in quaternion angle
     //ROS has a function to calculate yaw in quaternion angle
     odom_quat.setRPY(0,0,heading_);
